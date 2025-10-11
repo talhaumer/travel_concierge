@@ -13,12 +13,8 @@ def search_places(
     query: str, location: str = None, limit: int = 10
 ) -> List[PlaceDetails]:
     """Search for places using OpenStreetMap Nominatim API"""
-    print(f"DEBUG: Searching places with query='{query}', location='{location}', limit={limit}")
-    
     # Check if we should use fallback data for known cities
     if location and location.lower() in ["paris", "france"]:
-        print("DEBUG: Using fallback data for Paris")
-        print(query, limit, location)
         return get_fallback_places(query, limit, location)
     
     try:
@@ -49,7 +45,6 @@ def search_places(
                 )
             )
 
-        print(f"DEBUG: Found {len(places)} places from API")
         return places
 
     except Exception as e:
